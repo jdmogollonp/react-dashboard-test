@@ -39,7 +39,15 @@ return (
      
 export default function HorizontalLinearStepper() {
   const [activeStep, setActiveStep] = React.useState(0);
-  const handleNext = () => {
+  const [state, setState] = React.useState( {
+    ProjectName: '',
+    description: '',
+    tags: '',
+    isPublic: false,
+    bottonIsDisable : true
+  });
+
+  const handleNext = () => { 
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
   const handleBack = () => {
@@ -96,7 +104,7 @@ export default function HorizontalLinearStepper() {
       )}
 
       {activeStep === 0 ? (
-              <CreateProjectForm></CreateProjectForm>
+              <CreateProjectForm  handleNext = {handleNext}  state = {state} setSate = {setState} ></CreateProjectForm>
             ) : (
             ""
             )}

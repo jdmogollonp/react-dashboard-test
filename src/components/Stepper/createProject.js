@@ -8,18 +8,18 @@ import Request from '../../services/requests';
 
 
 
-
-
 class jectForm extends React.Component {
 
     constructor(props) {
         super(props);
+        
 
         this.state = {
             ProjectName: '',
             description: '',
             tags: '',
-            isPublic: false
+            isPublic: false,
+            bottonIsDisable : true
         };
 
         this.handleProjectNameChange = this.handleProjectNameChange.bind(this);
@@ -27,23 +27,24 @@ class jectForm extends React.Component {
         this.handleTagsChange = this.handleTagsChange.bind(this);
         this.handleIsPublicChange = this.handleIsPublicChange.bind(this);
         this.handleClick = this.handleClick.bind(this);
-    }
+    };
 
+    
     handleProjectNameChange(e) {
-        this.setState({ ProjectName: e.target.value });
-    }
+        this.setState({ ProjectName: e.target.value }, ()=>{this.handleForm()} );
+    };
 
     handleDescriptionChange(e) {
-        this.setState({ description: e.target.value });
-    }
+        this.setState({ description: e.target.value }, ()=>{this.handleForm()});
+    };
 
     handleTagsChange(e) {
-        this.setState({ tags: e.target.value });
-    }
+        this.setState({ tags: e.target.value }, ()=>{this.handleForm()});
+    };
 
     handleIsPublicChange(e) {
-        this.setState({ isPublic: e.target.value });
-    };
+        this.setState({ isPublic: e.target.checked });
+     };
 
     handleClick() {                    
         //const request = new Request().getRequestInstance(null, this.props.token);
@@ -56,18 +57,28 @@ class jectForm extends React.Component {
                 tags: ["test"],
                 isPublic: true,
             }).then((response) => {
+                this.props.handleNext()
                 console.log(response);
            
             }).catch((error) => {
                 console.log(error.response != null ? error.response : error);
                   })
         };
+    
+    handleForm() {
+        console.log(this.state.ProjectName != "" && this.state.description != "" && this.state.tags != "" , this.state.ProjectName != "" , this.state.description != "" , this.state.tags != "" )
+        if (this.state.ProjectName != "" && this.state.description != "" && this.state.tags != "" )
+            this.setState({ bottonIsDisable: false })
+        else
+            this.setState({ bottonIsDisable: true })
+
+    }
         
 
     
     render() {
         return (
-            <Aux>
+            <Aux> {console.log(this.state)}
                 <Row>
                     <Col>
                         <Card>
@@ -76,7 +87,7 @@ class jectForm extends React.Component {
                             </Card.Header>
                             <Card.Body>
                                 <Row>
-                                    <Col md={6}>
+                                    <Col md={6}> {console.log(this.state)}
                                         <Form>
                                             <Form.Group controlId="formProjectName">
                                                 <Form.Label>Project Name</Form.Label>
@@ -100,7 +111,7 @@ class jectForm extends React.Component {
                                                 <Form.Check type="checkbox" label="Make this project public"
                                                   value ={this.state.isPublic}  onChange={this.handleIsPublicChange}/>                                                
                                             </Form.Group>                                               
-                                            <Button variant="primary" size="lg" onClick={this.handleClick} >                                
+                                            <Button variant="primary" size="lg" onClick={this.handleClick} disabled ={this.state.bottonIsDisable} >                                
                                                 Create                      
                                             </Button>
                                         </Form>
