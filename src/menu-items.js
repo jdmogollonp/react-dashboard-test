@@ -7,58 +7,22 @@ const menuItems = {
             icon: 'icon-navigation',
             children: [
                 {
-                    id: 'Home',
-                    title: 'Home',
-                    type: 'item',
-                    url: '/app/dashboard/default',
-                    icon: 'feather icon-home'
-                },
-                {
                     id: 'Projects',
                     title: 'Projects',
                     type: 'item',
-                    url: '/app/dashboard/default',
-                    icon: 'feather icon-home'
+                    url: '/app/dashboard',
+                    icon: 'feather icon-folder'
+                },
+                {
+                    id: 'New project',
+                    title: 'New project',
+                    type: 'item',
+                    url: '/app/dashboard/projects',
+                    icon: 'feather icon-plus-square'
                 }
             ]
         },
-       {/*
-        {
-            id: 'ui-forms',
-            title: 'IDM',
-            type: 'group',
-            icon: 'icon-group',
-            children: [
-                {
-                    id: 'forms',
-                    title: 'Upload input data',
-                    type: 'item',
-                    url: '/forms/form-basic',
-                    icon: 'feather icon-file-text'
-                },
-             
-            ]
-        },
-    
-        {
-            id: 'resources',
-            title: 'Resources',
-            type: 'group',
-            icon: 'icon-pages',
-            children: [
-                {
-                    id: 'product-page',
-                    title: 'Download resource',
-                    type: 'item',
-                    url: '',
-                    classes: 'nav-item',
-                    icon: 'feather icon-download',
-                    target: true,
-                    external: true
-                },
-
-            ]
-        }  */}      
+ 
     ]
 };
 

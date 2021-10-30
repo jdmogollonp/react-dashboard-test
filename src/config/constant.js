@@ -1,5 +1,5 @@
 export const BASENAME = ''; // don't add '/' at end off BASENAME
-export const BASE_URL = '/app/dashboard/default';
+export const BASE_URL = '/app/dashboard';
 export const BASE_TITLE = ' | Cloud IDM ';
 export const API_SERVER = 'http://localhost:8000/api/';
 //export const API_SERVER = '54.172.139.33:8000/api/';

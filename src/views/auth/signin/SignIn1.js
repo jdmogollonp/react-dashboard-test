@@ -37,11 +37,6 @@ const Signin1 = () => {
 
                             <br />
 
-                            <p className="mb-0 text-muted">
-                                &copy;{' '}
-                               
-                                .
-                            </p>
                         </Card.Body>
                     </Card>
                 </div>

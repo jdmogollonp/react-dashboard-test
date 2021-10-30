@@ -7,13 +7,11 @@ import Request from '../../services/requests';
 
 
 
-
 class jectForm extends React.Component {
 
+   
     constructor(props) {
-        super(props);
-        
-
+        super(props);  
         this.state = {
             ProjectName: '',
             description: '',
@@ -21,7 +19,7 @@ class jectForm extends React.Component {
             isPublic: false,
             bottonIsDisable : true
         };
-
+           
         this.handleProjectNameChange = this.handleProjectNameChange.bind(this);
         this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
         this.handleTagsChange = this.handleTagsChange.bind(this);
@@ -45,6 +43,9 @@ class jectForm extends React.Component {
     handleIsPublicChange(e) {
         this.setState({ isPublic: e.target.checked });
      };
+
+
+
 
     handleClick() {                    
         //const request = new Request().getRequestInstance(null, this.props.token);
@@ -111,7 +112,7 @@ class jectForm extends React.Component {
                                                 <Form.Check type="checkbox" label="Make this project public"
                                                   value ={this.state.isPublic}  onChange={this.handleIsPublicChange}/>                                                
                                             </Form.Group>                                               
-                                            <Button variant="primary" size="lg" onClick={this.handleClick} disabled ={this.state.bottonIsDisable} >                                
+                                            <Button variant="primary" size="lg" onClick={this.handleClick} disabled ={this.state.bottonIsDisable}>                                 
                                                 Create                      
                                             </Button>
                                         </Form>

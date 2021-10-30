@@ -1,9 +1,11 @@
 import { combineReducers } from '@reduxjs/toolkit';
 import { reducer as formReducer } from 'redux-form';
-import accountReducer from './accountReducer';
 
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+
+import accountReducer from './accountReducer';
+import projectReducer from './projectReducer';
 
 const reducers = combineReducers({
     account: persistReducer(
@@ -12,7 +14,9 @@ const reducers = combineReducers({
             storage,
             keyPrefix: 'datta-'
         },
-        accountReducer
+        accountReducer,
+        projectReducer
+
     ),
     form: formReducer
 });

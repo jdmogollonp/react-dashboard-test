@@ -18,7 +18,8 @@ const steps = [
      'Upload files',
      'Check data quality',
      'Process data',
-     'Share'];
+     'Share',
+     'Done'];
 
 const demos = {
 soundcloud:

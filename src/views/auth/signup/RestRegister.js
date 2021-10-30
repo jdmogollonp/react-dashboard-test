@@ -1,16 +1,19 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { Row, Col, Button, Alert } from 'react-bootstrap';
+import { Row, Col, Button, Alert ,Toast} from 'react-bootstrap';
 
 import * as Yup from 'yup';
 import { Formik } from 'formik';
 import axios from 'axios';
 import useScriptRef from '../../../hooks/useScriptRef';
 import { API_SERVER } from './../../../config/constant';
+import { useDispatch } from 'react-redux'
+import {ACCOUNT_INITIALIZE} from './../../../store/actions'
 
 const RestRegister = ({ className, ...rest }) => {
-    let history = useHistory();
     const scriptedRef = useScriptRef();
+    const  [showToastError,setShowToastError] = React.useState(false)
+    const dispatcher = useDispatch()
 
     return (
         <React.Fragment>
@@ -41,15 +44,24 @@ const RestRegister = ({ className, ...rest }) => {
                                 email: values.email
                             })
                             .then(function (response) {
-                                if (response.data.success) {
-                                    history.push('/auth/signin');
+                                console.log(response)
+                                if (response.data) {                                    
+                                    dispatcher({
+                                        type: ACCOUNT_INITIALIZE,
+                                        payload: { isLoggedIn: true, user: response.data.user, token: response.data.token }
+                                    });
+                                    
                                 } else {
                                     setStatus({ success: false });
                                     setErrors({ submit: response.data.msg });
                                     setSubmitting(false);
                                 }
                             })
-                            .catch(function (error) {
+                            .catch(function (error) {                         
+                                
+                                if (error.response.data.detail === "The user with this username or email already exists in the system."){
+                                    setShowToastError(true)
+                                }
                                 setStatus({ success: false });
                                 setErrors({ submit: error.response.data.msg });
                                 setSubmitting(false);
@@ -74,7 +86,7 @@ const RestRegister = ({ className, ...rest }) => {
                                 placeholder="name"
                                 name="name"
                                 onBlur={handleBlur}
-                                onChange={handleChange}
+                                onChange={handleChange } 
                                 type="email"
                                 value={values.name}
                             />
@@ -142,14 +154,6 @@ const RestRegister = ({ className, ...rest }) => {
                                 <Alert variant="danger">{errors.submit}</Alert>
                             </Col>
                         )}
-
-                        <div className="custom-control custom-checkbox  text-left mb-4 mt-2">
-                            <input type="checkbox" className="custom-control-input" id="customCheck1" />
-                            <label className="custom-control-label" htmlFor="customCheck1">
-                                Save credentials.
-                            </label>
-                        </div>
-
                         <Row>
                             <Col mt={2}>
                                 <Button
@@ -168,6 +172,23 @@ const RestRegister = ({ className, ...rest }) => {
                 )}
             </Formik>
             <hr />
+
+            <Toast show = {showToastError} onClose = {()=> {setShowToastError(false)}} >
+                <Toast.Header>
+                
+                <strong className="me-auto">Error</strong>
+                 </Toast.Header>
+                
+                <Toast.Body>El usuario ya existe</Toast.Body>
+            </Toast>
+
+
+
+
+
+
+
+
         </React.Fragment>
     );
 };

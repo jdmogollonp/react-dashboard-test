@@ -1,13 +1,35 @@
 
 
+// cuando se crea el projecto necesito guardar el id del projecto y el nombre de la carpeta que me devuelve el back
+// el id de la carpeta es un parámetro, por ahora todos los archivos van al mismo bu
 
 
 import React from 'react';
 import { Row, Col, Card, Form,  InputGroup } from 'react-bootstrap';
 
 const FormsElements = () => {
-   
-    
+   /*  const fileInput = useRef();
+    const handleClick = (event) => {
+    event.preventDefault();
+    let file = fileInput.current.files[0];
+    let newFileName = fileInput.current.files[0].name.replace(/\..+$/, "");
+    const config = {
+    bucketName: process.env.REACT_APP_BUCKET_NAME,
+    dirName: process.env.REACT_APP_DIR_NAME /* optional ,
+    region: process.env.REACT_APP_REGION,
+    accessKeyId: process.env.REACT_APP_ACCESS_ID,
+    secretAccessKey: process.env.REACT_APP_ACCESS_KEY,
+    };
+    const ReactS3Client = new S3(config);
+    ReactS3Client.uploadFile(file, newFileName).then((data) => {
+    console.log(data);
+    if (data.status === 204) {
+        console.log("success");
+    } else {
+        console.log("fail");
+    }
+    }); */
+      
 
     return (
         <React.Fragment>
