@@ -14,10 +14,19 @@ const reducers = combineReducers({
             storage,
             keyPrefix: 'datta-'
         },
-        accountReducer,
-        projectReducer
+        accountReducer,       
 
     ),
+    project: persistReducer(
+        {
+            key: 'project',
+            storage,
+            keyPrefix: 'datta-'
+        },
+        projectReducer,       
+
+    ),
+
     form: formReducer
 });
 
